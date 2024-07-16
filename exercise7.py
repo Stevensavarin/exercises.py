@@ -1,100 +1,55 @@
-# ' '.join(chickens)
-# creative[0]
-# creative[-4]
-# type(website[0])
-# len(website[0])
-# website[0] == website[0:1] == 'e'
-# <str>[<start>:stop:<step>]
-# <str>.split(<separator>) 
-# cat_ipsum.split()
-# cat_ipsum.split()[-1]
-# for index, item in enumerate(<str>)
-
-"""Functions for creating, transforming, and adding prefixes to strings."""
-
-def add_prefix_un(word):
-    """Take the given word and add the 'un' prefix.
-
-    :param word: str - containing the root word.
-    :return: str - of root word prepended with 'un'.
-    """
-    
-    prefix = "un"
-    return prefix + word
-
-print(add_prefix_un("happy"))
-print(add_prefix_un("manageable"))
+"""Functions to help edit essay homework using string manipulation."""
 
 
-def make_word_groups(vocab_words):
-    """Transform a list containing a prefix and words into a string with the prefix followed by the words with prefix prepended.
+def capitalize_title(title):
+    """Convert the first letter of each word in the title to uppercase if needed.
 
-    :param vocab_words: list - of vocabulary words with prefix in first index.
-    :return: str - of prefix followed by vocabulary words with
-            prefix applied.
-
-    This function takes a `vocab_words` list and returns a string
-    with the prefix and the words with prefix applied, separated
-     by ' :: '.
-
-    For example: list('en', 'close', 'joy', 'lighten'),
-    produces the following string: 'en :: enclose :: enjoy :: enlighten'.
+    :param title: str - title string that needs title casing.
+    :return: str - title string in title case (first letters capitalized).
     """
 
-def make_word_groups(vocab_words):
-    prefix = vocab_words[0]
-    return f"{prefix} :: {' :: '.join([prefix + word for word in vocab_words[1:]])}"
+    title = title.title()
+    return title
 
-vocab_words = ['en', 'close', 'joy', 'lighten']
-result = make_word_groups(vocab_words)
-print(result)
-
-vocab_words = ['pre', 'serve', 'dispose', 'position']
-result = make_word_groups(vocab_words)
-print(result)
-
-vocab_words = ['auto', 'didactic', 'graph', 'mate']
-result = make_word_groups(vocab_words)
-print(result)
-
-vocab_words = ['inter', 'twine', 'connected', 'dependent']
-result = make_word_groups(vocab_words)
-print(result)
+print(capitalize_title("my hobbies"))
 
 
-def remove_suffix_ness(word):
-    """Remove the suffix from the word while keeping spelling in mind.
+def check_sentence_ending(sentence):
+    """Check the ending of the sentence to verify that a period is present.
 
-    :param word: str - of word to remove suffix from.
-    :return: str - of word with suffix removed & spelling adjusted.
-
-    For example: "heaviness" becomes "heavy", but "sadness" becomes "sad".
-    """
-    
-    root = word[:-4]
-    if root.endswith('i'):
-        root = root[:-1] + 'y'
-    return root
-
-print(remove_suffix_ness("heaviness"))
-print(remove_suffix_ness("sadness"))
-
-
-def adjective_to_verb(sentence, index):
-    """Change the adjective within the sentence to a verb.
-
-    :param sentence: str - that uses the word in sentence.
-    :param index: int - index of the word to remove and transform.
-    :return: str - word that changes the extracted adjective to a verb.
-
-    For example, ("It got dark as the sun set.", 2) becomes "darken".
+    :param sentence: str - a sentence to check.
+    :return: bool - return True if punctuated correctly with period, False otherwise.
     """
 
-    words = sentence.split()
+    sentence = sentence.endswith(".")
+    return sentence
 
-    adjective = words[index].strip('.,!?')
-    verb = adjective + 'en'
-    return verb
+print(check_sentence_ending("I like to hike, bake, and read."))
 
-print(adjective_to_verb('I need to make that bright.', -1))
-print(adjective_to_verb('It got dark as the sun set.', 2))
+
+def clean_up_spacing(sentence):
+    """Verify that there isn't any whitespace at the start and end of the sentence.
+
+    :param sentence: str - a sentence to clean of leading and trailing space characters.
+    :return: str - a sentence that has been cleaned of leading and trailing space characters.
+    """
+
+    sentence = sentence.strip(" ")
+    return sentence
+
+print(clean_up_spacing(" I like to go on hikes with my dog.  "))
+
+
+def replace_word_choice(sentence, old_word, new_word):
+    """Replace a word in the provided sentence with a new one.
+
+    :param sentence: str - a sentence to replace words in.
+    :param old_word: str - word to replace.
+    :param new_word: str - replacement word.
+    :return: str - input sentence with new words in place of old words.
+    """
+
+    sentence = sentence.replace(old_word, new_word)
+    return sentence
+
+print(replace_word_choice("I bake good cakes.", "good", "amazing"))
