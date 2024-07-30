@@ -11,7 +11,9 @@ def add_me_to_the_queue(express_queue, normal_queue, ticket_type, person_name):
     :return: list - the (updated) queue the name was added to.
     """
 
-    pass
+    queue = normal_queue if ticket_type == 0 else express_queue
+    queue.append(person_name)
+    return queue
 
 
 def find_my_friend(queue, friend_name):
