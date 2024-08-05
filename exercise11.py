@@ -96,8 +96,21 @@ def student_ranking(student_scores, student_names):
     :return: list - of strings in format ["<rank>. <student name>: <score>"].
     """
 
-    pass
+    ranking = []
+    
+    # Iteramos sobre los índices de las listas
+    for i in range(len(student_scores)):
+        # Formateamos la cadena de cada estudiante
+        rank_string = f"{i + 1}. {student_names[i]}: {student_scores[i]}"
+        # Añadimos la cadena formateada a la lista de ranking
+        ranking.append(rank_string)
+    
+    return ranking
 
+# Ejemplos de uso:
+student_scores = [100, 99, 90, 84, 66, 53, 47]
+student_names = ['Joci', 'Sara', 'Kora', 'Jan', 'John', 'Bern', 'Fred']
+print(student_ranking(student_scores, student_names))
 
 def perfect_score(student_info):
     """Create a list that contains the name and grade of the first student to make a perfect score on the exam.
