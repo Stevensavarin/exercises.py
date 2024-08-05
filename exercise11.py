@@ -70,7 +70,22 @@ def letter_grades(highest):
             86 <= "A" <= 100
     """
 
-    pass
+    failing_threshold = 40
+    num_grades = 4
+
+    interval = (highest - failing_threshold) // num_grades
+
+    thresholds = []
+
+    for i in range(num_grades):
+        threshold = failing_threshold + 1 + (interval * i)
+        thresholds.append(threshold)
+    
+    return thresholds
+
+
+print(letter_grades(100))
+print(letter_grades(88))
 
 
 def student_ranking(student_scores, student_names):
