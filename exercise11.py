@@ -98,16 +98,12 @@ def student_ranking(student_scores, student_names):
 
     ranking = []
     
-    # Iteramos sobre los índices de las listas
     for i in range(len(student_scores)):
-        # Formateamos la cadena de cada estudiante
         rank_string = f"{i + 1}. {student_names[i]}: {student_scores[i]}"
-        # Añadimos la cadena formateada a la lista de ranking
         ranking.append(rank_string)
     
     return ranking
 
-# Ejemplos de uso:
 student_scores = [100, 99, 90, 84, 66, 53, 47]
 student_names = ['Joci', 'Sara', 'Kora', 'Jan', 'John', 'Bern', 'Fred']
 print(student_ranking(student_scores, student_names))
@@ -119,4 +115,11 @@ def perfect_score(student_info):
     :return: list - first `[<student name>, 100]` or `[]` if no student score of 100 is found.
     """
 
-    pass
+    for student in student_info:
+        if student[1] == 100:
+            return student
+        
+    return []
+
+print(perfect_score([["Charles", 90], ["Tony", 80], ["Alex", 100]]))
+print(perfect_score([["Charles", 90], ["Tony", 80]]))      
