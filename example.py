@@ -1,5 +1,10 @@
-student_scores = [100, 99, 90, 84, 66, 53, 47]  
+student_info = ("Alyssa", "grade 3", "female", 8 )
 
-hola=(len(student_scores))
+for index, item in enumerate(student_info):
+    print(f"Index is: {index} value is: {item}.")
 
-print(hola)
+"""...
+Index is: 0, value is: Alyssa.
+Index is: 1, value is: grade 3.
+Index is: 2, value is: female.
+Index is: 3, value is: 8."""
