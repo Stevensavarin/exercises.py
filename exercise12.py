@@ -36,7 +36,11 @@ def compare_records(azara_record, rui_record):
     :return: bool - do the coordinates match?
     """
 
-    pass
+    return tuple(azara_record[1]) == rui_record[1]
+
+print(compare_records(('Brass Spyglass', '4B'), ('Seaside Cottages', ('1', 'C'), 'blue')))
+
+print(compare_records(('Model Ship in Large Bottle', '8A'), ('Harbor Managers Office', ('8', 'A'), 'purple')))
 
 
 def create_record(azara_record, rui_record):
@@ -47,7 +51,13 @@ def create_record(azara_record, rui_record):
     :return: tuple or str - the combined record (if compatible), or the string "not a match" (if incompatible).
     """
 
-    pass
+    if tuple(azara_record[1]) == rui_record[1]:
+        return azara_record + rui_record
+    else:
+        return "not a match"
+
+print(create_record(('Brass Spyglass', '4B'), ('Abandoned Lighthouse', ('4', 'B'), 'Blue')))
+print(create_record(('Brass Spyglass', '4B'), ('Seaside Cottages', ('1', 'C'), 'blue')))
 
 
 def clean_up(combined_record_group):
@@ -61,4 +71,6 @@ def clean_up(combined_record_group):
     (see HINTS.md for an example).
     """
 
-    pass
+    return "".join([f"{(record[0], record[2], record[3], record[4])}\n" for record in combined_record_group])
+
+print(clean_up((('Brass Spyglass', '4B', 'Abandoned Lighthouse', ('4', 'B'), 'Blue'), ('Vintage Pirate Hat', '7E', 'Quiet Inlet (Island of Mystery)', ('7', 'E'), 'Orange'), ('Crystal Crab', '6A', 'Old Schooner', ('6', 'A'), 'Purple'))))
