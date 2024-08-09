@@ -48,7 +48,14 @@ def decrement_items(inventory, items):
     :return: dict - updated inventory with items decremented.
     """
 
-    pass
+    inventory2 = create_inventory(items)
+
+    for key, value in inventory2.items():
+        if key in inventory:
+            inventory[key] -= value
+            if inventory[key] < 0:
+                inventory[key] = 0
+    return inventory
 
 print(decrement_items({"coal":3, "diamond":1, "iron":5}, ["diamond", "coal", "iron", "iron"]))
 print(decrement_items({"coal":2, "wood":1, "diamond":2}, ["coal", "coal", "wood", "wood", "diamond"]))
@@ -61,7 +68,13 @@ def remove_item(inventory, item):
     :return: dict - updated inventory with item removed. Current inventory if item does not match.
     """
 
-    pass
+    if item in inventory:
+        inventory.pop(item)
+
+    return inventory
+
+print(remove_item({"coal":2, "wood":1, "diamond":2}, "coal"))
+print(remove_item({"coal":2, "wood":1, "diamond":2}, "gold"))
 
 
 def list_inventory(inventory):
@@ -71,5 +84,7 @@ def list_inventory(inventory):
     :return: list of tuples - list of key, value pairs from the inventory dictionary.
     """
 
-    pass
+    return [(key, value) for key, value in inventory.items() if value > 0]
+
+print(list_inventory({"coal":7, "wood":11, "diamond":2, "iron":7, "silver":0}))
 
