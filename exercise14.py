@@ -1,6 +1,5 @@
 """Functions to manage a users shopping cart items."""
 
-
 def add_item(current_cart, items_to_add):
     """Add items to shopping cart.
 
@@ -9,7 +8,16 @@ def add_item(current_cart, items_to_add):
     :return: dict - the updated user cart dictionary.
     """
 
-    pass
+    for item in items_to_add:
+        if item in current_cart:
+            current_cart[item] += 1
+        else:
+            current_cart[item] = 1
+    
+    return current_cart
+
+print(add_item({'Banana': 3, 'Apple': 2, 'Orange': 1},
+              ('Apple', 'Apple', 'Orange', 'Apple', 'Banana')))
 
 
 def read_notes(notes):
@@ -19,7 +27,11 @@ def read_notes(notes):
     :return: dict - a user shopping cart dictionary.
     """
 
-    pass
+    notes = dict.fromkeys(notes, 1)
+
+    return notes
+
+print(read_notes(['Banana','Apple', 'Orange']))
 
 
 def update_recipes(ideas, recipe_updates):
@@ -30,7 +42,8 @@ def update_recipes(ideas, recipe_updates):
     :return: dict - updated "recipe ideas" dict.
     """
 
-    pass
+    ideas.update(recipe_updates) 
+    return ideas
 
 
 def sort_entries(cart):
@@ -40,18 +53,22 @@ def sort_entries(cart):
     :return: dict - users shopping cart sorted in alphabetical order.
     """
 
-    pass
+    return dict(sorted(cart.items()))
 
 
 def send_to_store(cart, aisle_mapping):
     """Combine users order to aisle and refrigeration information.
-
+ 
     :param cart: dict - users shopping cart dictionary.
     :param aisle_mapping: dict - aisle and refrigeration information dictionary.
     :return: dict - fulfillment dictionary ready to send to store.
     """
-
-    pass
+    
+    fulfillment_dict={}
+    for item in cart.keys():
+        aisle_mapping[item].insert(0,cart[item])
+        fulfillment_dict[item]=aisle_mapping[item]
+    return reversed(sorted(fulfillment_dict.items()))
 
 
 def update_store_inventory(fulfillment_cart, store_inventory):
@@ -62,4 +79,8 @@ def update_store_inventory(fulfillment_cart, store_inventory):
     :return: dict - store_inventory updated.
     """
 
-    pass
+    for key in fulfillment_cart.keys():
+        store_inventory[key][0] -= fulfillment_cart[key][0]
+        if store_inventory[key][0]<=0:
+            store_inventory[key][0]="Out of Stock"
+    return store_inventory
